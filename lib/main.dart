@@ -23,7 +23,12 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: ListViewHome(),
+     
+      home: new Scaffold(
+        //Here you can set what ever background color you need.
+        backgroundColor: Colors.white,
+        body: ListViewHome(),
+      ),
     );
   }
 }

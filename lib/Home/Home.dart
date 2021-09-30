@@ -15,12 +15,27 @@ class ListViewHome extends StatelessWidget {
     //   ],
 
     // );
-    return Row(
+
+    return SafeArea(
+        child: Row(
       children: [
-        BlueBox(),
-        BlueBox(),
-        BlueBox(),
+        Text(
+          "Mohabbat",
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+        ),
+        Text(
+          "Hello world",
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+        ),
+        TextButton(
+          style: ButtonStyle(
+            foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+          ),
+          onPressed: () {},
+          child: Text('Click Here'),
+        )
+        
       ],
-    );
+    ));
   }
 }
