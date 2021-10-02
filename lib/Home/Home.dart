@@ -16,10 +16,13 @@ class ListViewHome extends StatelessWidget {
     // );
 
     return SafeArea(
-        child: Container(child: ProfileCard()
-      
-       
-      
+        child: Row(
+      children: [
+        Container(
+          child: ProfileCard(),
+        ),
+   
+      ],
     ));
   }
 }
