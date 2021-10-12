@@ -29,7 +29,13 @@ class _ProfileCardState extends State<ProfileCard> {
     return Expanded(
       child: ListView(
         padding: const EdgeInsets.all(8),
+         scrollDirection: Axis.horizontal,
         children: <Widget>[
+
+          Card(),
+          Card(),
+          Card(),
+          Card(),
           Card(),
           Card(),
         ],
@@ -45,40 +51,37 @@ class Card extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(20),
-          child: Container(
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
+    return Container(
+      color: Colors.green,
+      child: Row(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(5),
+            child: Container(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
 
-              image: DecorationImage(
-                fit: BoxFit.fill,
-                image: NetworkImage("https://picsum.photos/250?image=9"),
+                image: DecorationImage(
+                  fit: BoxFit.fill,
+                  image: NetworkImage("https://picsum.photos/250?image=9"),
+                ),
+
+                // color: Colors.red[500],
               ),
-
-              // color: Colors.red[500],
+              width: 25,
+              height: 25,
             ),
-            width: 50,
-            height: 50,
           ),
-        ),
-        Text(
-          "Ismayil",
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
+          Text(
+            "Ismayil",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+            ),
           ),
-        ),
-        Text(
-          "Ismayil",
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-          ),
-        ),
-      ],
+         
+        ],
+      ),
     );
   }
 }
