@@ -56,7 +56,10 @@ class _HomeRestaurantCardState extends State<HomeRestaurantCard> {
             ],
           ),
           Row(
+            
+
             children: [
+              
               Image(
                   image: NetworkImage(
                       "https://www.starpng.com/public/uploads/preview/5-star-rating-png-21573998074syeo5vib9a.png"),
