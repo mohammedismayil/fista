@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterdemo/Home/HomeHeader.dart';
 import 'package:flutterdemo/Home/ProfileCard.dart';
 
 class ListViewHome extends StatelessWidget {
@@ -17,11 +18,16 @@ class ListViewHome extends StatelessWidget {
 
     return SafeArea(
       
-         child: Column(
-      children: [
-             Container(child: ProfileCard()),
-        Container(child: ProfileCard()),
-      ],
-         ));
+         child: ListView(
+        children: [
+         
+               Container(
+              decoration: BoxDecoration(color: Colors.white),
+              child: HomeHeader()),
+          // ProfileCard(),
+        ],
+           
+      ),
+    );
   }
 }

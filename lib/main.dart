@@ -24,11 +24,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
      
-      home: new Scaffold(
-        //Here you can set what ever background color you need.
-        backgroundColor: Colors.white,
-        body: ListViewHome(),
-      ),
+      home: ListViewHome()
     );
   }
 }
