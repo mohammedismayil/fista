@@ -1,0 +1,36 @@
+{
+    "restaurant": [
+      {
+        "id": "1",
+        "name": "Cheese Burger",
+        "category": "Fresh patty",
+        "price": "20",
+        "rating": "4",
+        "image": ""
+      },
+      {
+        "id": "2",
+        "name": "Mutton pizza",
+        "category": "Fresh patty",
+        "price": "20",
+        "rating": "4",
+        "image": ""
+      },
+      {
+        "id": "3",
+        "name": "Cheese Burger",
+        "category": "Fresh patty",
+        "price": "20",
+        "rating": "4",
+        "image": ""
+      },
+      {
+        "id": "4",
+        "name": "Cheese Burger",
+        "category": "Fresh patty",
+        "price": "20",
+        "rating": "4",
+        "image": ""
+      }
+    ]
+  }
