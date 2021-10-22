@@ -48,17 +48,13 @@ jobs:
         name: release-apk
         path: build/app/outputs/apk/release/app-release.apk
 
-
-# Checkout
-    - name: Checkout repository
-      uses: actions/checkout@v2
-      # Upload to Drive
     - name: Upload to gdrive
-      uses: team-tumbleweed/gdrive-upload-action@main
+      uses: adityak74/google-drive-upload-git-action@main
       with:
-          filename: README.md
-          name: "README.md"
           credentials: ${{ secrets.CREDENTIALS }}
+          filename: "README.md"
           folderId: ${{ secrets.FOLDER_ID }}
+          overwrite: "true" # optional boolean
+
 
     
