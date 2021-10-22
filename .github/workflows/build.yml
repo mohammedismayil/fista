@@ -53,10 +53,11 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
       # Upload to Drive
-    - name: Upload README.md to Google Drive
-      uses: Jodebu/upload-to-drive@master
+    - name: Upload to gdrive
+      uses: team-tumbleweed/gdrive-upload-action@main
       with:
-          target: README.md
+          filename: "README.md"
+          name: "README.md"
           credentials: ${{ secrets.CREDENTIALS }}
           folder: ${{ secrets.FOLDER_ID }}
 
