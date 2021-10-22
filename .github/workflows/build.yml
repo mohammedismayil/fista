@@ -1,4 +1,4 @@
-name: Flutter CI
+name: Build Flutter APK
 
 # This workflow is triggered on pushes to the repository.
 
@@ -47,3 +47,17 @@ jobs:
       with:
         name: release-apk
         path: build/app/outputs/apk/release/app-release.apk
+
+
+# Checkout
+    - name: Checkout repository
+      uses: actions/checkout@v2
+      # Upload to Drive
+    - name: Upload README.md to Google Drive
+      uses: Jodebu/upload-to-drive@master
+      with:
+          target: build/app/outputs/apk/release/app-release.apk
+          credentials: secrets.CREDENTIALS
+          folder: secrets.FOLDER_ID
+
+    
