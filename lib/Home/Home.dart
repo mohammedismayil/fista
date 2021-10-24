@@ -21,9 +21,13 @@ class ListViewHome extends StatelessWidget {
          child: ListView(
         children: [
          
-               Container(
+               Column(
+            children: [
+                   Container(
               decoration: BoxDecoration(color: Colors.white),
               child: HomeHeader()),
+                 ],
+          ),
           // ProfileCard(),
         ],
            

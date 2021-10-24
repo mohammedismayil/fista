@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/Home/Home.dart';
+import 'package:flutterdemo/Home/HomeScreen.dart';
 
 void main() {
   runApp(MyApp());
@@ -23,8 +24,8 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-     
-      home: ListViewHome()
+      debugShowCheckedModeBanner: false,
+        home: Material(child: HomeScreen())
     );
   }
 }
