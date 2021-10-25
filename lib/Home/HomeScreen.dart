@@ -34,9 +34,41 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           Column(
             children: [
+              // #6b64e0
+
               Container(
-                  decoration: BoxDecoration(color: Colors.deepPurple),
+                 
                   child: HomeHeader()),
+                 Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 15),
+                    child: Text("Categories",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                            fontSize: 25)),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 15),
+                    child: Row(
+                      children: [
+                        Image(
+                            image: NetworkImage(
+                                "https://img.icons8.com/material-outlined/2x/appointment-reminders.png"),
+                            height: 25,
+                            width: 25),
+                        Image(
+                            image: NetworkImage(
+                                "https://img.icons8.com/material-outlined/2x/appointment-reminders.png"),
+                            height: 25,
+                            width: 25),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
               restaurantsView()
             ],
           ),
@@ -46,9 +78,9 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  SizedBox restaurantsView() {
-    return SizedBox(
-        height: 200,
+  Container restaurantsView() {
+    return Container(
+        height: 500,
         child: FutureBuilder<Welcome>(
           future: fetchRestaurants(), // function where you call your api
           builder: (BuildContext context, AsyncSnapshot<Welcome> snapshot) {
@@ -68,7 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 return ListView.builder(
                     padding: const EdgeInsets.all(10),
                     itemCount: snapshot.data!.restaurant.length,
-                    scrollDirection: Axis.horizontal,
+                    scrollDirection: Axis.vertical,
                     itemBuilder: (BuildContext context, int index) {
                       return HomeRestaurantCard(
                         '${snapshot.data!.restaurant}',
