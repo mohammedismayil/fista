@@ -12,15 +12,45 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
-        color: Colors.red,
+        // #12101a
+
+        color: Color(0xff12101a),
         child: Column(
           children: [
             // Image(image: AssetImage('/assets/images/welcome.png')),
-            Text('Enterprise Team collabration',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 40,
-                )),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  Text('Enterprise Team collabration',
+                      textAlign: TextAlign.center,
+                      
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 40,
+                        color: Colors.white,
+                      )),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(top: 20, right: 20, left: 20),
+                    child: Text(
+                        'Bring together your files,tools,projects and people.Including a new desktop and mobile application',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 25,
+                          color: Colors.grey,
+                        )),
+                  ),
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      child: const Text('Enabled ok'),
+                    ),
+                   
+                ],
+              ),
+            ),
           ],
         ),
       ),
