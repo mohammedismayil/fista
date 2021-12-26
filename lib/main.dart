@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/Home/Home.dart';
 import 'package:flutterdemo/Home/HomeScreen.dart';
+import 'package:flutterdemo/WelcomeScreen/WelcomeScreen.dart';
 
 void main() {
   runApp(MyApp());
@@ -23,9 +24,11 @@ class MyApp extends StatelessWidget {
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
         primarySwatch: Colors.blue,
+        
       ),
+      
       debugShowCheckedModeBanner: false,
-        home: Material(child: HomeScreen())
+        home: Material(child: WelcomeScreen())
     );
   }
 }
