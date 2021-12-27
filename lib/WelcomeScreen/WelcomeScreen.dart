@@ -22,6 +22,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 50,bottom: 50),
+                    child: Container(child: Image.network('https://picsum.photos/250?image=9')),
+                  ),
                   Text('Enterprise Team collabration',
                       textAlign: TextAlign.center,
                       
@@ -41,19 +45,30 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                           color: Colors.grey,
                         )),
                   ),
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      child: const Text('Enabled ok'),
-                    ),
-                   
+                  Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Row(
+                        children: [
+                          ElevatedButton(onPressed: () {
+
+                          }
+                          , child: Text("Register")),
+                           ElevatedButton(onPressed: () {
+
+                          }
+                          , child: Text("Login"))
+                        ],
+                      ),
+                    ],
+                  )
+                 
                 ],
-              ),
+                
             ),
-          ],
-        ),
+          ),
+        ],
       ),
-    );
+    ));
   }
 }
