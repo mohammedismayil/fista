@@ -24,7 +24,11 @@ class _HomeTabBarState extends State<HomeTabBar> {
               Container(child: Icon(Icons.directions_car)),
               Container(child: Icon(Icons.directions_transit)),
               Container(child: Icon(Icons.directions_bike)),
-              Container(child: Icon(Icons.directions_bike)),
+              Container(child: Icon(Icons.directions_transit)),
+              // Container(child: Icon(Icons.directions_car)),
+
+              // Container(child: Icon(Icons.directions_bike)),
+              // Container(child: Icon(Icons.directions_bike)),
             ],
           ),
         ),
