@@ -72,7 +72,7 @@ class _HomeHeaderState extends State<HomeHeader> {
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
-                    fontSize: 23)),
+                    fontSize: 30)),
           ]),
     );
   }

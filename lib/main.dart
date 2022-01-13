@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
       ),
       
       debugShowCheckedModeBanner: false,
-        home: Material(child: HomeTabBar())
+        home: Material(child: ListViewHome())
     );
   }
 }
