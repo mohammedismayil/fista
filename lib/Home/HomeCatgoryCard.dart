@@ -14,7 +14,7 @@ class _HomeCategoryCardState extends State<HomeCategoryCard> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        width: 150,
+        width: 140,
         height: 200,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),

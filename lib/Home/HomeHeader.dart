@@ -99,7 +99,7 @@ class _HomeHeaderState extends State<HomeHeader> {
         color: AppTheme().themeYellow,
         size: 30.0,
       ),
-      Text("800 Chinese Avenue,NYC")
+      Text("800 Cheese Avenue,NYC")
     ]);
   }
 

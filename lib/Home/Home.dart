@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterdemo/Constants/ThemeColors.dart';
 import 'package:flutterdemo/Home/HomeCatgoryCard.dart';
 import 'package:flutterdemo/Home/HomeHeader.dart';
+import 'package:flutterdemo/Home/HomeRecommendedCard.dart';
 import 'package:flutterdemo/Home/ProfileCard.dart';
 
 class ListViewHome extends StatelessWidget {
@@ -19,13 +20,33 @@ class ListViewHome extends StatelessWidget {
     // );
 
     return Scaffold(
-      backgroundColor: AppTheme().lightGray,
+      backgroundColor: AppTheme().white,
       body: SafeArea(
         child: Container(
           child: Column(
             children: [
-              HomeHeader(),
-              HomeTopCategories(),
+              Container(
+                  decoration: BoxDecoration(
+                    borderRadius:
+                        BorderRadius.only(bottomLeft: Radius.circular(20)),
+                    // boxShadow: [
+                    //   BoxShadow(
+                    //     offset: Offset(2.0, 2.0),
+                    //     blurRadius: 5,
+                    //     color: Colors.black.withOpacity(0.3),
+                    //   ),
+                    // ],
+                  ),
+                  child: HomeHeader()),
+              SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Column(
+                  children: [
+                    HomeTopCategories(),
+                    homeRecommended(),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
@@ -38,7 +59,7 @@ Widget HomeTopCategories() {
   return Column(
     children: [
       Padding(
-        padding: const EdgeInsets.only(top: 25,left:15),
+        padding: const EdgeInsets.only(top: 10, left: 15, bottom: 10),
         child: Row(
           children: [
             Text(
@@ -64,4 +85,39 @@ Widget HomeTopCategories() {
      )
     ],
   );
+
+  
+}
+Widget homeRecommended() {
+  return Column(
+    children: [
+      Padding(
+        padding: const EdgeInsets.only(top: 10, left: 15, bottom: 10),
+        child: Row(
+          children: [
+            Text(
+              "Recommended",
+              style: TextStyle(
+                  fontWeight: FontWeight.bold, color: Colors.black, fontSize: 22),
+            ),
+            
+          ],
+        ),
+      ),
+     SingleChildScrollView(
+
+       scrollDirection: Axis.horizontal,
+          child: Row(
+            children: [
+              HomeRecommendedCard(),
+               HomeRecommendedCard(),
+                HomeRecommendedCard(),
+                 HomeRecommendedCard()
+            ],
+          ),
+     )
+    ],
+  );
+
+  
 }
