@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterdemo/Constants/ThemeColors.dart';
+import 'package:flutterdemo/Home/HomeCatgoryCard.dart';
 import 'package:flutterdemo/Home/HomeHeader.dart';
 import 'package:flutterdemo/Home/ProfileCard.dart';
 
@@ -16,22 +18,50 @@ class ListViewHome extends StatelessWidget {
 
     // );
 
-    return SafeArea(
-      
-         child: ListView(
-        children: [
-         
-               Column(
+    return Scaffold(
+      backgroundColor: AppTheme().lightGray,
+      body: SafeArea(
+        child: Container(
+          child: Column(
             children: [
-                   Container(
-              decoration: BoxDecoration(color: Colors.white),
-              child: HomeHeader()),
-                 ],
+              HomeHeader(),
+              HomeTopCategories(),
+            ],
           ),
-          // ProfileCard(),
-        ],
-           
+        ),
       ),
     );
   }
+}
+
+Widget HomeTopCategories() {
+  return Column(
+    children: [
+      Padding(
+        padding: const EdgeInsets.only(top: 25,left:15),
+        child: Row(
+          children: [
+            Text(
+              "Something new",
+              style: TextStyle(
+                  fontWeight: FontWeight.bold, color: Colors.black, fontSize: 22),
+            ),
+            
+          ],
+        ),
+      ),
+     SingleChildScrollView(
+
+       scrollDirection: Axis.horizontal,
+          child: Row(
+            children: [
+              HomeCategoryCard(),
+               HomeCategoryCard(),
+                HomeCategoryCard(),
+                 HomeCategoryCard()
+            ],
+          ),
+     )
+    ],
+  );
 }

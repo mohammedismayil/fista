@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterdemo/Constants/ThemeColors.dart';
 import 'package:flutterdemo/Home/HomeRestaurantCard.dart';
 
 import 'ProfileCard.dart';
@@ -14,44 +15,36 @@ class HomeHeader extends StatefulWidget {
   @override
   _HomeHeaderState createState() => _HomeHeaderState();
 }
-
+//  borderRadius: BorderRadius.only(bottomLeft:Radius.circular(30),bottomRight:Radius.circular(30)),
 class _HomeHeaderState extends State<HomeHeader> {
-  
-
   @override
   void initState() {
     super.initState();
     print("heheh");
-    
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(20)),
-          color: Color(0xFF6b64e0)),
+      color: AppTheme().white,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          notificationView(),
-          Row(
-            children: [
-              greetingView(),
-            ],
+          Padding(
+            padding: const EdgeInsets.only(left: 15, right: 15, top: 5),
+            child: locationText(),
           ),
-           TextField(
-//    ...,other fields
-            decoration: InputDecoration(
-              prefixIcon: Icon(Icons.done),
-            ),
+          Padding(
+            padding:
+                const EdgeInsets.only(left: 15, right: 15, top: 5, bottom: 15),
+            child: SearchBar(),
           ),
         ],
       ),
     );
   }
 
-   greetingView() {
+  greetingView() {
     return Padding(
       padding: const EdgeInsets.only(
         left: 15,
@@ -61,7 +54,6 @@ class _HomeHeaderState extends State<HomeHeader> {
       child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.start,
-          
           children: [
             Text("Hi Ismayil",
                 style: TextStyle(
@@ -77,9 +69,9 @@ class _HomeHeaderState extends State<HomeHeader> {
     );
   }
 
-   notificationView() {
+  notificationView() {
     return Padding(
-       padding: const EdgeInsets.only(
+      padding: const EdgeInsets.only(
         left: 10,
         top: 30,
         right: 10,
@@ -100,6 +92,17 @@ class _HomeHeaderState extends State<HomeHeader> {
     );
   }
 
+  Widget locationText() {
+    return Row(children: [
+      Icon(
+        Icons.location_on,
+        color: AppTheme().themeYellow,
+        size: 30.0,
+      ),
+      Text("800 Chinese Avenue,NYC")
+    ]);
+  }
+
   // SizedBox categoryview() {
   //   return SizedBox(
   //     height: 75,
@@ -116,7 +119,35 @@ class _HomeHeaderState extends State<HomeHeader> {
   //   );
   // }
 
+}
 
+class SearchBar extends StatelessWidget {
+  const SearchBar({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+          color: AppTheme().lightGray,
+          borderRadius: BorderRadius.all(Radius.circular(10))),
+      child: Column(
+        children: [
+          TextField(
+            decoration: InputDecoration(
+              prefixIcon: Icon(Icons.search),
+              hintText: 'Search for food',
+              border: InputBorder.none,
+            ),
+            onChanged: (text) {
+              print('First text field: $text');
+            },
+          ),
+        ],
+      ),
+    );
+  }
 }
 
 class Album {
