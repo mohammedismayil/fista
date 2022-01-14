@@ -40,11 +40,14 @@ class ListViewHome extends StatelessWidget {
                   child: HomeHeader()),
               SingleChildScrollView(
                 scrollDirection: Axis.vertical,
-                child: Column(
-                  children: [
-                    HomeTopCategories(),
-                    homeRecommended(),
-                  ],
+                child: Container(
+                  color: AppTheme().lightGray,
+                  child: Column(
+                    children: [
+                      HomeTopCategories(),
+                      homeRecommended(),
+                    ],
+                  ),
                 ),
               ),
             ],
@@ -65,7 +68,10 @@ Widget HomeTopCategories() {
             Text(
               "Something new",
               style: TextStyle(
-                  fontWeight: FontWeight.bold, color: Colors.black, fontSize: 22),
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                  fontSize: 22,
+                  fontFamily: 'kobenhavn'),
             ),
             
           ],
@@ -98,7 +104,10 @@ Widget homeRecommended() {
             Text(
               "Recommended",
               style: TextStyle(
-                  fontWeight: FontWeight.bold, color: Colors.black, fontSize: 22),
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                  fontSize: 22,
+                  fontFamily: 'kobenhavn'),
             ),
             
           ],

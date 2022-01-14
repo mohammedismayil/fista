@@ -48,6 +48,10 @@ flutter:
     - assets/images/welcome.png
     - assets/images/pizza.jpeg
     - assets/SampleData/RestaurantData.json
+  fonts:
+    - family: kobenhavn
+      fonts:
+        - asset: assets/fonts/Kobenhavn W03 Bold.ttf
 
   # To add assets to your application, add an assets section, like this:
   # assets:

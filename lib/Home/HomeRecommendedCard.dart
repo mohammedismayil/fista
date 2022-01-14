@@ -14,47 +14,56 @@ class _HomeRecommendedCardState extends State<HomeRecommendedCard> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        width: 300,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: AppTheme().themeYellow,
-        ),
+        width: 270,
+        // decoration: BoxDecoration(
+        //   borderRadius: BorderRadius.circular(10),
+        //   color: AppTheme().themeYellow,
+        // ),
         child: Column(
           children: [
-            Image.asset("assets/images/pizza.jpeg"),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Row(children: [
-                Text("Sushi"),
+            Container(
+              width: 270,
+              height: 150,
+              
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+                image: DecorationImage(
+                  image: AssetImage("assets/images/pizza.jpeg"),
+                  fit: BoxFit.fill,
+                  
+        ),
+              
+              ),
+            ),
 
-                // Container(
-                //     height: 200,
-                //     width: 150,
-                //     decoration: BoxDecoration(
-                //         image: DecorationImage(image: Image.asset('../'))),
-                // )],
-              ]),
+            Padding(
+              padding: const EdgeInsets.only(top: 10,bottom: 10),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 10),
+                    child: Row(
+                      children: [Text("Heaven's Park",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),
+                      
+                      
+                      )],
+                    ),
+                  ),
+                  Row(
+                   
+                    children: [
+                      RatingRow(),
+                      SizedBox(width: 15),
+                      timeRow(),
+                      SizedBox(width: 15),
+                      starRow(),
+
+                    ],
+                  ),
+                  storeCategoryRow(),
+                ],
+              ),
             ),
-            Row(
-              children: [Text("Heaven's Park")],
-            ),
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 10, left: 10),
-                  child: RatingRow(),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 10, left: 10),
-                  child: timeRow(),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 10, left: 10),
-                  child: starRow(),
-                ),
-              ],
-            ),
-            storeCategoryRow(),
           ],
         ),
       ),
@@ -69,6 +78,7 @@ Widget RatingRow() {
         Icons.star,
         size: 15,
       ),
+      SizedBox(width: 5),
       Text("4.5")
     ],
   );
@@ -76,7 +86,8 @@ Widget RatingRow() {
 
 Widget timeRow() {
   return Row(
-    children: [Icon(Icons.access_time_sharp, size: 15), Text("25-30min")],
+    children: [Icon(Icons.access_time_sharp, size: 15),
+    SizedBox(width: 5), Text("25-30min")],
   );
 }
 
@@ -87,32 +98,30 @@ Widget starRow() {
 }
 
 Widget storeCategoryRow() {
-  return Row(
-    children: [
-      Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Container(
+  return Padding(
+    padding: const EdgeInsets.only(top:20),
+    child: Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
           margin: EdgeInsets.only(right: 20, left: 20),
-          child: Center(child: Text('Fish')),
+          child: Text('Fish',textAlign: TextAlign.center,),
           color: Colors.white,
         ),
-      ),
-      Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Container(
+        Container(
           margin: EdgeInsets.only(right: 20, left: 20),
-          child: Center(child: Text('Fish')),
+         child: Text('Fish',textAlign: TextAlign.center,),
           color: Colors.white,
         ),
-      ),
-      Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Container(
+        Container(
           margin: EdgeInsets.only(right: 20, left: 20),
-          child: Center(child: Text('Fish')),
+          child: Expanded(
+            child: Flexible(child: Text('Experimental',textAlign: TextAlign.center, maxLines: 1,
+                    softWrap: false,)),
+          ),
           color: Colors.white,
         ),
-      ),
-    ],
+      ],
+    ),
   );
 }
