@@ -53,9 +53,9 @@ class _HomeRecommendedCardState extends State<HomeRecommendedCard> {
                    
                     children: [
                       RatingRow(),
-                      SizedBox(width: 15),
+                      SizedBox(width: 7),
                       timeRow(),
-                      SizedBox(width: 15),
+                      SizedBox(width: 7),
                       starRow(),
 
                     ],
@@ -78,7 +78,7 @@ Widget RatingRow() {
         Icons.star,
         size: 15,
       ),
-      SizedBox(width: 5),
+      SizedBox(width: 2),
       Text("4.5")
     ],
   );
@@ -87,7 +87,9 @@ Widget RatingRow() {
 Widget timeRow() {
   return Row(
     children: [Icon(Icons.access_time_sharp, size: 15),
-    SizedBox(width: 5), Text("25-30min")],
+      SizedBox(width: 2),
+      Text("25-30min")
+    ],
   );
 }
 
@@ -98,28 +100,85 @@ Widget starRow() {
 }
 
 Widget storeCategoryRow() {
+  List<String> items = ['foo', 'bar', 'foo', 'bar', 'foo'];
+  
   return Padding(
     padding: const EdgeInsets.only(top:20),
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          margin: EdgeInsets.only(right: 20, left: 20),
-          child: Text('Fish',textAlign: TextAlign.center,),
-          color: Colors.white,
-        ),
-        Container(
-          margin: EdgeInsets.only(right: 20, left: 20),
-         child: Text('Fish',textAlign: TextAlign.center,),
-          color: Colors.white,
-        ),
-        Container(
-          margin: EdgeInsets.only(right: 20, left: 20),
-          child: Expanded(
-            child: Flexible(child: Text('Experimental',textAlign: TextAlign.center, maxLines: 1,
-                    softWrap: false,)),
+        // ListView.builder(
+        //   scrollDirection: Axis.horizontal,
+        //   itemCount: items.length,
+        //   itemBuilder: (context, index) {
+        //     return ListTile(
+        //       title: Text(items[index]),
+        //     );
+        //   },
+        // ),
+        // Flexible(
+        //   child: Container(
+        //     padding: EdgeInsets.only(left: 5, right: 5, top: 5, bottom: 5),
+        //     // decoration: BoxDecoration(
+        //     //   borderRadius: BorderRadius.all(Radius.circular(10)),
+        //     // ),
+        //     child: Text(
+        //       'Steak',
+        //       textAlign: TextAlign.center,
+        //       style: TextStyle(
+        //         color: Colors.grey,
+        //       ),
+        //     ),
+        //     color: Colors.white,
+        //   ),
+        // ),
+        // Flexible(
+        //   child: Container(
+        //     padding: EdgeInsets.only(left: 5, right: 5, top: 5, bottom: 5),
+        //     // decoration: BoxDecoration(
+        //     //   borderRadius: BorderRadius.all(Radius.circular(10)),
+        //     // ),
+        //     child: Text(
+        //       'Fish',
+        //       textAlign: TextAlign.center,
+        //       style: TextStyle(
+        //         color: Colors.grey,
+        //       ),
+        //     ),
+        //     color: Colors.white,
+        //   ),
+        // ),
+        Flexible(
+          child: Container(
+            padding: EdgeInsets.only(left: 5, right: 5, top: 5, bottom: 5),
+            // decoration: BoxDecoration(
+            //   borderRadius: BorderRadius.all(Radius.circular(10)),
+            // ),
+            child: Text(
+              'Experimental',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.grey,
+              ),
+            ),
+            color: Colors.white,
           ),
-          color: Colors.white,
+        ),
+        Flexible(
+          child: Container(
+            padding: EdgeInsets.only(left: 5, right: 5, top: 5, bottom: 5),
+            // decoration: BoxDecoration(
+            //   borderRadius: BorderRadius.all(Radius.circular(10)),
+            // ),
+            child: Text(
+              'Fish',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.grey,
+              ),
+            ),
+            color: Colors.white,
+          ),
         ),
       ],
     ),
