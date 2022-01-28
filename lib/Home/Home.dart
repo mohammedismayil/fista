@@ -94,15 +94,18 @@ class _HomePageContainerState extends State<HomePageContainer> {
                 // ],
               ),
               child: HomeHeader()),
-          SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: Container(
-              color: AppTheme().lightGray,
-              child: Column(
-                children: [
-                  HomeTopCategories(),
-                  homeRecommended(),
-                ],
+          Expanded(
+            child: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Expanded(
+                child: Container(
+                  child: Column(
+                    children: [
+                      HomeTopCategories(),
+                      homeRecommended(),
+                    ],
+                  ),
+                ),
               ),
             ),
           ),
@@ -160,6 +163,17 @@ Widget homeRecommended() {
                   fontSize: 22,
                   fontFamily: 'kobenhavn'),
             ),
+          ],
+        ),
+      ),
+      SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: [
+            HomeRecommendedCard(),
+            HomeRecommendedCard(),
+            HomeRecommendedCard(),
+            HomeRecommendedCard()
           ],
         ),
       ),

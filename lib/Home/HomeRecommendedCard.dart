@@ -103,54 +103,17 @@ Widget storeCategoryRow() {
   List<String> items = ['foo', 'bar', 'foo', 'bar', 'foo'];
   
   return Padding(
-    padding: const EdgeInsets.only(top:20),
+    padding: const EdgeInsets.only(top:10),
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.start,
+      
       children: [
-        // ListView.builder(
-        //   scrollDirection: Axis.horizontal,
-        //   itemCount: items.length,
-        //   itemBuilder: (context, index) {
-        //     return ListTile(
-        //       title: Text(items[index]),
-        //     );
-        //   },
-        // ),
-        // Flexible(
-        //   child: Container(
-        //     padding: EdgeInsets.only(left: 5, right: 5, top: 5, bottom: 5),
-        //     // decoration: BoxDecoration(
-        //     //   borderRadius: BorderRadius.all(Radius.circular(10)),
-        //     // ),
-        //     child: Text(
-        //       'Steak',
-        //       textAlign: TextAlign.center,
-        //       style: TextStyle(
-        //         color: Colors.grey,
-        //       ),
-        //     ),
-        //     color: Colors.white,
-        //   ),
-        // ),
-        // Flexible(
-        //   child: Container(
-        //     padding: EdgeInsets.only(left: 5, right: 5, top: 5, bottom: 5),
-        //     // decoration: BoxDecoration(
-        //     //   borderRadius: BorderRadius.all(Radius.circular(10)),
-        //     // ),
-        //     child: Text(
-        //       'Fish',
-        //       textAlign: TextAlign.center,
-        //       style: TextStyle(
-        //         color: Colors.grey,
-        //       ),
-        //     ),
-        //     color: Colors.white,
-        //   ),
-        // ),
+
         Flexible(
           child: Container(
-            padding: EdgeInsets.only(left: 5, right: 5, top: 5, bottom: 5),
+            height: 35,
+            margin: EdgeInsets.only(right:10 ),
+            padding: EdgeInsets.only(left: 5, right: 5, top: 0, bottom: 5),
             // decoration: BoxDecoration(
             //   borderRadius: BorderRadius.all(Radius.circular(10)),
             // ),
@@ -166,12 +129,28 @@ Widget storeCategoryRow() {
         ),
         Flexible(
           child: Container(
-            padding: EdgeInsets.only(left: 5, right: 5, top: 5, bottom: 5),
+            padding: EdgeInsets.only(left: 5, right: 5, top: 0, bottom: 5),
             // decoration: BoxDecoration(
             //   borderRadius: BorderRadius.all(Radius.circular(10)),
             // ),
             child: Text(
               'Fish',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.grey,
+              ),
+            ),
+            color: Colors.white,
+          ),
+        ),
+         Flexible(
+          child: Container(
+            padding: EdgeInsets.only(left: 5, right: 5, top: 0, bottom: 5),
+            // decoration: BoxDecoration(
+            //   borderRadius: BorderRadius.all(Radius.circular(10)),
+            // ),
+            child: Text(
+              'Chickenleg',
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.grey,
