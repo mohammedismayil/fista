@@ -149,6 +149,8 @@ Widget HomeTopCategories() {
 }
 
 Widget homeRecommended() {
+
+  List recommendedRestaurants = ["Amman","Newmass","amsavalli"];
   return Column(
     children: [
       Padding(
@@ -166,6 +168,9 @@ Widget homeRecommended() {
           ],
         ),
       ),
+
+
+
       SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(
@@ -173,18 +178,7 @@ Widget homeRecommended() {
             HomeRecommendedCard(),
             HomeRecommendedCard(),
             HomeRecommendedCard(),
-            HomeRecommendedCard()
-          ],
-        ),
-      ),
-      SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          children: [
-            HomeRecommendedCard(),
-            HomeRecommendedCard(),
-            HomeRecommendedCard(),
-            HomeRecommendedCard()
+           
           ],
         ),
       )
