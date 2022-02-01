@@ -69,72 +69,78 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
       body: SafeArea(
           child: Padding(
         padding: const EdgeInsets.only(left: 5, right: 5),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Image(),
-              NameAndAddButtons(),
-              
-              RatingAndDetails(),
-              Description(),
-              Container(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    InkWell(
-                      child: Container(
-                          width: 150,
-                          height: 50,
-                          margin: EdgeInsets.only(right: 10, left: 10),
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(50)),
-                              border:
-                                  Border.all(color: AppTheme().themeYellow)),
-                          child: Center(
-                              child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.star,
-                                size: 15,
-                                color: AppTheme().themeYellow,
-                              ),
-                              Text(
-                                "Chat",
-                                style: TextStyle(
-                                    color: AppTheme().themeYellow,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16),
-                              ),
-                            ],
-                          ))),
-                    ),
-                    InkWell(
-                      child: Container(
-                          width: 150,
-                          height: 50,
-                          margin: EdgeInsets.only(right: 10, left: 10),
-                          decoration: BoxDecoration(
-                            color: AppTheme().themeYellow,
-                            borderRadius: BorderRadius.all(Radius.circular(50)),
-                          ),
-                          child: Center(
-                            child: Text(
-                              "Add cart",
-                              style: TextStyle(
+        child: Column(
+          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Image(),
+            NameAndAddButtons(),
+            RatingAndDetails(),
+            Description(),
+            Expanded(
+              child: Container(
+                  alignment: Alignment.bottomCenter,
+                  child: Container(
+                    margin: EdgeInsets.only(bottom: 15),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        InkWell(
+                          child: Container(
+                              width: 150,
+                              height: 50,
+                              margin: EdgeInsets.only(right: 10, left: 10),
+                              decoration: BoxDecoration(
                                   color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16),
-                            ),
-                          )),
-                    )
-                  ],
-                ),
-              )
-            ],
-          ),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(50)),
+                                  border: Border.all(
+                                      color: AppTheme().themeYellow)),
+                              child: Center(
+                                  child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.star,
+                                    size: 15,
+                                    color: AppTheme().themeYellow,
+                                  ),
+                                  Text(
+                                    "Chat",
+                                    style: TextStyle(
+                                        color: AppTheme().themeYellow,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16),
+                                  ),
+                                ],
+                              ))),
+                        ),
+                        InkWell(
+                          child: Container(
+                              width: 150,
+                              height: 50,
+                              margin: EdgeInsets.only(right: 10, left: 10),
+                              decoration: BoxDecoration(
+                                color: AppTheme().themeYellow,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(50)),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  "Add cart",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16),
+                                ),
+                              )),
+                        )
+                      ],
+                    ),
+                  )
+              ),
+            ),
+
+          ],
         ),
       )),
     );
