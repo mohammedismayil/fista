@@ -1,6 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/Constants/ThemeColors.dart';
+import 'package:flutterdemo/Home/HomeRestaurantCard.dart';
+import 'package:http/http.dart' as http;
+
+import 'StoreDetailModel.dart';
 
 class StoreDetailScreen extends StatefulWidget {
   const StoreDetailScreen({Key? key}) : super(key: key);
@@ -11,7 +17,7 @@ class StoreDetailScreen extends StatefulWidget {
 
 class _StoreDetailScreenState extends State<StoreDetailScreen> {
   int cartItemscount = 1;
-
+  late Future<Welcome> futureAlbum;
   Widget RatingRow() {
     return Row(
       children: [
@@ -61,6 +67,28 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
         )
       ],
     );
+  }
+
+  Future<Welcome> fetchAlbum() async {
+    final response = await http.get(Uri.parse(
+        'https://run.mocky.io/v3/b6f09c90-5162-4ee8-988b-90f0a1f84dd0'));
+
+    if (response.statusCode == 200) {
+      // If the server did return a 200 OK response,
+      // then parse the JSON.
+      print(response.body);
+      return Welcome.fromJson(jsonDecode(response.body));
+    } else {
+      // If the server did not return a 200 OK response,
+      // then throw an exception.
+      throw Exception('Failed to load album');
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    futureAlbum = fetchAlbum();
   }
 
   @override
@@ -136,10 +164,8 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                         )
                       ],
                     ),
-                  )
-              ),
+                  )),
             ),
-
           ],
         ),
       )),
@@ -148,87 +174,85 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
 
   Padding NameAndAddButtons() {
     return Padding(
-              padding: const EdgeInsets.only(left: 10, right: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    width: 230,
-                    child: Text(
-                      "Grilled cheese salad with ice cream",
-                      style: TextStyle(fontSize: 25),
-                    ),
-                  ),
-                  Container(
-                    width: 100,
-                    height: 45,
+      padding: const EdgeInsets.only(left: 10, right: 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Container(
+            width: 230,
+            child: Text(
+              "Grilled cheese salad with ice cream",
+              style: TextStyle(fontSize: 25),
+            ),
+          ),
+          Container(
+            width: 100,
+            height: 45,
+            decoration: BoxDecoration(
+              color: Colors.grey,
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                InkWell(
+                  child: Container(
+                    margin: EdgeInsets.only(left: 10),
+                    width: 20,
+                    height: 20,
                     decoration: BoxDecoration(
-                      color: Colors.grey,
+                      color: Colors.white,
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        InkWell(
-                          child: Container(
-                            margin: EdgeInsets.only(left: 10),
-                            width: 20,
-                            height: 20,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10)),
-                            ),
-                          ),
-                          onTap: () => {
-                            if (cartItemscount != 1)
-                              {
-                                setState(() {
-                                  cartItemscount = cartItemscount - 1;
-                                })
-                              }
-                          },
-                        ),
-                        Text("$cartItemscount"),
-                        InkWell(
-                          child: Container(
-                            margin: EdgeInsets.only(right: 10),
-                            width: 20,
-                            height: 20,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10)),
-                            ),
-                          ),
-                          onTap: () => {
-                            setState(() {
-                              cartItemscount = cartItemscount + 1;
-                            })
-                          },
-                        )
-                      ],
+                  ),
+                  onTap: () => {
+                    if (cartItemscount != 1)
+                      {
+                        setState(() {
+                          cartItemscount = cartItemscount - 1;
+                        })
+                      }
+                  },
+                ),
+                Text("$cartItemscount"),
+                InkWell(
+                  child: Container(
+                    margin: EdgeInsets.only(right: 10),
+                    width: 20,
+                    height: 20,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
-                  )
-                ],
-              ),
-            );
+                  ),
+                  onTap: () => {
+                    setState(() {
+                      cartItemscount = cartItemscount + 1;
+                    })
+                  },
+                )
+              ],
+            ),
+          )
+        ],
+      ),
+    );
   }
 
   Container RatingAndDetails() {
     return Container(
-              margin: EdgeInsets.only(top: 20, left: 10, right: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  locationRow(),
-                  SizedBox(width: 15),
-                  RatingRow(),
-                  SizedBox(width: 15),
-                  preparationTimeRow(),
-                ],
-              ),
-            );
+      margin: EdgeInsets.only(top: 20, left: 10, right: 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          locationRow(),
+          SizedBox(width: 15),
+          RatingRow(),
+          SizedBox(width: 15),
+          preparationTimeRow(),
+        ],
+      ),
+    );
   }
 }
 
@@ -248,8 +272,7 @@ class Description extends StatelessWidget {
             children: [
               Text(
                 "Description",
-                style: TextStyle(
-                    fontSize: 20, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ],
           ),
@@ -265,11 +288,13 @@ class Description extends StatelessWidget {
                             text:
                                 'Originating from cyprus,semisoft and slightly nutty halloumi cheese resists melting when heated , so you can luxuriate  ',
                             style: TextStyle(
-                                fontSize: 15, color: Colors.grey,wordSpacing: 5,height: 1.5 )),
+                                fontSize: 15,
+                                color: Colors.grey,
+                                wordSpacing: 5,
+                                height: 1.5)),
                         TextSpan(
                             text: 'Read more...',
-                            style: TextStyle(
-                                fontSize: 15, color: Colors.blue),
+                            style: TextStyle(fontSize: 15, color: Colors.blue),
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
                                 print('Terms of Service"');

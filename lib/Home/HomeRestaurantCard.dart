@@ -3,70 +3,17 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-Welcome welcomeFromJson(String str) => Welcome.fromJson(json.decode(str));
 
-String welcomeToJson(Welcome data) => json.encode(data.toJson());
 
-class Welcome {
-  Welcome({
-    required this.restaurant,
-  });
 
-  List<Restaurant> restaurant;
-
-  factory Welcome.fromJson(Map<String, dynamic> json) => Welcome(
-        restaurant: List<Restaurant>.from(
-            json["restaurant"].map((x) => Restaurant.fromJson(x))),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "restaurant": List<dynamic>.from(restaurant.map((x) => x.toJson())),
-      };
-}
-
-class Restaurant {
-  Restaurant({
-    required this.id,
-    required this.name,
-    required this.category,
-    required this.price,
-    required this.rating,
-    required this.image,
-  });
-
-  String id;
-  String name;
-  String category;
-  String price;
-  String rating;
-  String image;
-
-  factory Restaurant.fromJson(Map<String, dynamic> json) => Restaurant(
-        id: json["id"],
-        name: json["name"],
-        category: json["category"],
-        price: json["price"],
-        rating: json["rating"],
-        image: json["image"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "name": name,
-        "category": category,
-        "price": price,
-        "rating": rating,
-        "image": image,
-      };
-}
 
 class HomeRestaurantCard extends StatefulWidget {
 
-  final Restaurant restaurant;
+  // final Restaurant restaurant;
   HomeRestaurantCard(
     String s, {
     Key? key,
-    required this.restaurant,
+    // required this.restaurant,
   }) : super(key: key);
 
     
@@ -100,15 +47,15 @@ class _HomeRestaurantCardState extends State<HomeRestaurantCard> {
             children: [
               Column(
                 children: [
-                  Text(
-                  widget.restaurant.name,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 17,
-                      color: Colors.white,
-                    ),
-                    textAlign: TextAlign.start,
-                  ),
+                  // Text(
+                  // widget.restaurant.name,
+                  //   style: TextStyle(
+                  //     fontWeight: FontWeight.bold,
+                  //     fontSize: 17,
+                  //     color: Colors.white,
+                  //   ),
+                  //   textAlign: TextAlign.start,
+                  // ),
                   Text(
                     "Fresh Patty",
                     style: TextStyle(
