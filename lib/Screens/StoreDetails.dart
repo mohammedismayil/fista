@@ -21,55 +21,11 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
   late Future<Welcome> futureAlbum;
 
   late Welcome modelData;
-  Widget RatingRow() {
-    return Row(
-      children: [
-        Icon(
-          Icons.star,
-          size: 15,
-          color: AppTheme().themeYellow,
-        ),
-        SizedBox(width: 2),
-        Text(
-          "4.7 Ratings",
-          style: TextStyle(color: Colors.grey),
-        )
-      ],
-    );
-  }
 
-  Widget locationRow() {
-    return Row(
-      children: [
-        Icon(
-          Icons.location_on,
-          size: 15,
-          color: AppTheme().themeYellow,
-        ),
-        SizedBox(width: 2),
-        Text(
-          "2.3 KM",
-          style: TextStyle(color: Colors.grey),
-        )
-      ],
-    );
-  }
-
-  Widget preparationTimeRow() {
-    return Row(
-      children: [
-        Icon(
-          Icons.fastfood,
-          size: 15,
-          color: AppTheme().themeYellow,
-        ),
-        SizedBox(width: 2),
-        Text(
-          "20-24 Mins",
-          style: TextStyle(color: Colors.grey),
-        )
-      ],
-    );
+  incrementCart(int count) {
+    setState(() {
+      modelData.restaurantDetails.cartCount = count.toString();
+    });
   }
 
   Future<Welcome> fetchAlbum() async {
@@ -109,8 +65,13 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                 // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Image(url: modelData.restaurantDetails.image),
-                  NameAndAddButtons(),
-                  RatingAndDetails(),
+                  NameAndAddButton(
+                    data: modelData.restaurantDetails,
+                    callback: this.incrementCart,
+                  ),
+                  RatingAndDetails(
+                    data: modelData.restaurantDetails,
+                  ),
                   Description(
                       description: modelData.restaurantDetails.description),
                   Expanded(
@@ -191,8 +152,89 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
       )),
     );
   }
+}
 
-  Padding NameAndAddButtons() {
+class RatingAndDetails extends StatelessWidget {
+  RatingAndDetails({
+    Key? key,
+    required this.data,
+  }) : super(key: key);
+  late RestaurantDetails data;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(top: 20, left: 10, right: 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Icon(
+                Icons.location_on,
+                size: 15,
+                color: AppTheme().themeYellow,
+              ),
+              SizedBox(width: 2),
+              Text(
+                data.distance,
+                style: TextStyle(color: Colors.grey),
+              )
+            ],
+          ),
+          SizedBox(width: 15),
+          Row(
+            children: [
+              Icon(
+                Icons.star,
+                size: 15,
+                color: AppTheme().themeYellow,
+              ),
+              SizedBox(width: 2),
+              Text(
+                data.ratings,
+                style: TextStyle(color: Colors.grey),
+              )
+            ],
+          ),
+          SizedBox(width: 15),
+          Row(
+            children: [
+              Icon(
+                Icons.fastfood,
+                size: 15,
+                color: AppTheme().themeYellow,
+              ),
+              SizedBox(width: 2),
+              Text(
+                data.preparationTime,
+                style: TextStyle(color: Colors.grey),
+              )
+            ],
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class NameAndAddButton extends StatefulWidget {
+  NameAndAddButton({
+    Key? key,
+    required this.data,
+    required this.callback,
+  }) : super(key: key);
+
+  late RestaurantDetails data;
+
+  late Function callback;
+
+  @override
+  State<NameAndAddButton> createState() => _NameAndAddButtonState();
+}
+
+class _NameAndAddButtonState extends State<NameAndAddButton> {
+  @override
+  Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 10, right: 10),
       child: Row(
@@ -201,7 +243,7 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
           Container(
             width: 230,
             child: Text(
-              "Grilled cheese salad with ice cream",
+              widget.data.name,
               style: TextStyle(fontSize: 25),
             ),
           ),
@@ -225,16 +267,16 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
                   ),
-                  onTap: () => {
-                    if (cartItemscount != 1)
-                      {
-                        setState(() {
-                          cartItemscount = cartItemscount - 1;
-                        })
-                      }
-                  },
+                  // onTap: () => {
+                  //   if (cartItemscount != 1)
+                  //     {
+                  //       setState(() {
+                  //         cartItemscount = cartItemscount - 1;
+                  //       })
+                  //     }
+                  // },
                 ),
-                Text("$cartItemscount"),
+                Text(widget.data.cartCount),
                 InkWell(
                   child: Container(
                     margin: EdgeInsets.only(right: 10),
@@ -245,31 +287,12 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
                   ),
-                  onTap: () => {
-                    setState(() {
-                      cartItemscount = cartItemscount + 1;
-                    })
-                  },
+                  onTap: () =>
+                      {widget.callback(int.parse(widget.data.cartCount) + 1)},
                 )
               ],
             ),
           )
-        ],
-      ),
-    );
-  }
-
-  Container RatingAndDetails() {
-    return Container(
-      margin: EdgeInsets.only(top: 20, left: 10, right: 10),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          locationRow(),
-          SizedBox(width: 15),
-          RatingRow(),
-          SizedBox(width: 15),
-          preparationTimeRow(),
         ],
       ),
     );
@@ -307,8 +330,7 @@ class Description extends StatelessWidget {
                     text: TextSpan(
                       children: [
                         TextSpan(
-                            text:
-                                description,
+                            text: description,
                             style: TextStyle(
                                 fontSize: 15,
                                 color: Colors.grey,
