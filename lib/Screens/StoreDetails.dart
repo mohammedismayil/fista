@@ -111,7 +111,8 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                   Image(url: modelData.restaurantDetails.image),
                   NameAndAddButtons(),
                   RatingAndDetails(),
-                  Description(),
+                  Description(
+                      description: modelData.restaurantDetails.description),
                   Expanded(
                     child: Container(
                         alignment: Alignment.bottomCenter,
@@ -276,8 +277,10 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
 }
 
 class Description extends StatelessWidget {
+  final description;
   const Description({
     Key? key,
+    this.description,
   }) : super(key: key);
 
   @override
@@ -305,7 +308,7 @@ class Description extends StatelessWidget {
                       children: [
                         TextSpan(
                             text:
-                                'Originating from cyprus,semisoft and slightly nutty halloumi cheese resists melting when heated , so you can luxuriate  ',
+                                description,
                             style: TextStyle(
                                 fontSize: 15,
                                 color: Colors.grey,
