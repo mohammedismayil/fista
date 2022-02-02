@@ -2,9 +2,10 @@ import 'dart:convert';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
 import 'package:flutterdemo/Constants/ThemeColors.dart';
 import 'package:flutterdemo/Home/HomeRestaurantCard.dart';
-import 'package:http/http.dart' as http;
 
 import 'StoreDetailModel.dart';
 
@@ -18,6 +19,8 @@ class StoreDetailScreen extends StatefulWidget {
 class _StoreDetailScreenState extends State<StoreDetailScreen> {
   int cartItemscount = 1;
   late Future<Welcome> futureAlbum;
+
+  late Welcome modelData;
   Widget RatingRow() {
     return Row(
       children: [
@@ -97,76 +100,92 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
       body: SafeArea(
           child: Padding(
         padding: const EdgeInsets.only(left: 5, right: 5),
-        child: Column(
-          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Image(),
-            NameAndAddButtons(),
-            RatingAndDetails(),
-            Description(),
-            Expanded(
-              child: Container(
-                  alignment: Alignment.bottomCenter,
-                  child: Container(
-                    margin: EdgeInsets.only(bottom: 15),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        InkWell(
-                          child: Container(
-                              width: 150,
-                              height: 50,
-                              margin: EdgeInsets.only(right: 10, left: 10),
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(50)),
-                                  border: Border.all(
-                                      color: AppTheme().themeYellow)),
-                              child: Center(
-                                  child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.star,
-                                    size: 15,
-                                    color: AppTheme().themeYellow,
-                                  ),
-                                  Text(
-                                    "Chat",
-                                    style: TextStyle(
-                                        color: AppTheme().themeYellow,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 16),
-                                  ),
-                                ],
-                              ))),
-                        ),
-                        InkWell(
-                          child: Container(
-                              width: 150,
-                              height: 50,
-                              margin: EdgeInsets.only(right: 10, left: 10),
-                              decoration: BoxDecoration(
-                                color: AppTheme().themeYellow,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(50)),
+        child: FutureBuilder(
+          future: futureAlbum,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              modelData = snapshot.data as Welcome;
+              return Column(
+                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Image(url: modelData.restaurantDetails.image),
+                  NameAndAddButtons(),
+                  RatingAndDetails(),
+                  Description(),
+                  Expanded(
+                    child: Container(
+                        alignment: Alignment.bottomCenter,
+                        child: Container(
+                          margin: EdgeInsets.only(bottom: 15),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              InkWell(
+                                child: Container(
+                                    width: 150,
+                                    height: 50,
+                                    margin:
+                                        EdgeInsets.only(right: 10, left: 10),
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(50)),
+                                        border: Border.all(
+                                            color: AppTheme().themeYellow)),
+                                    child: Center(
+                                        child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Icon(
+                                          Icons.star,
+                                          size: 15,
+                                          color: AppTheme().themeYellow,
+                                        ),
+                                        Text(
+                                          "Chat",
+                                          style: TextStyle(
+                                              color: AppTheme().themeYellow,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 16),
+                                        ),
+                                      ],
+                                    ))),
                               ),
-                              child: Center(
-                                child: Text(
-                                  "Add cart",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16),
-                                ),
-                              )),
-                        )
-                      ],
-                    ),
-                  )),
-            ),
-          ],
+                              InkWell(
+                                child: Container(
+                                    width: 150,
+                                    height: 50,
+                                    margin:
+                                        EdgeInsets.only(right: 10, left: 10),
+                                    decoration: BoxDecoration(
+                                      color: AppTheme().themeYellow,
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(50)),
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        "Add cart",
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 16),
+                                      ),
+                                    )),
+                              )
+                            ],
+                          ),
+                        )),
+                  ),
+                ],
+              );
+            } else if (snapshot.hasError) {
+              return Text('${snapshot.error}');
+            }
+
+            // By default, show a loading spinner.
+            return const CircularProgressIndicator();
+          },
         ),
       )),
     );
@@ -313,8 +332,10 @@ class Description extends StatelessWidget {
 }
 
 class Image extends StatelessWidget {
+  final url;
   const Image({
     Key? key,
+    required this.url,
   }) : super(key: key);
 
   @override
@@ -328,7 +349,7 @@ class Image extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(25)),
           image: DecorationImage(
-            image: AssetImage("assets/images/pizza.jpeg"),
+            image: NetworkImage(url),
             fit: BoxFit.fill,
           ),
         ),
