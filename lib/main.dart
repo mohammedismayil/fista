@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterdemo/Home/Home.dart';
 import 'package:flutterdemo/Home/HomeScreen.dart';
 import 'package:flutterdemo/Home/HomeTabbar.dart';
+import 'package:flutterdemo/Screens/QuizApp/QuizScreen.dart';
 import 'package:flutterdemo/WelcomeScreen/WelcomeScreen.dart';
 
 void main() {
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
       ),
       
       debugShowCheckedModeBanner: false,
-        home: Material(child: ListViewHome())
+        home: Material(child: QuizScreen())
     );
   }
 }
