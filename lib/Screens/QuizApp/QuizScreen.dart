@@ -30,11 +30,18 @@ class _QuizScreenState extends State<QuizScreen> {
       }
     });
   }
-
+  moveToPreviousQuestion() {
+    setState(() {
+      if (currentQuestion < _questionsModel.questions.length) {
+        currentQuestion = currentQuestion - 1;
+      }
+    });
+  }
   selectAnswer(int index) {
     setState(() {
       if (currentQuestion < _questionsModel.questions.length) {
         _questionsModel.questions[currentQuestion].answeredQN = index;
+        _questionsModel.questions[currentQuestion].isAnswered = true;
       }
     });
   }
@@ -51,10 +58,11 @@ class _QuizScreenState extends State<QuizScreen> {
                   questionsModel: _questionsModel,
                   currentQuestion: currentQuestion,
                   callback: moveToNextQuestion,
+                  moveToPrevious: moveToPreviousQuestion,
                   selectAnswer: selectAnswer,
                 )
               : YourScore(
-                  total: total!,
+                  total: total,
                   currentQuestion: currentQuestion,
                   questionsModel: _questionsModel,
                 )),
@@ -112,6 +120,8 @@ class QuestionAndAnswers extends StatefulWidget {
       required this.questionsModel,
       required this.currentQuestion,
       required this.callback,
+      required this.moveToPrevious,
+      
       required this.selectAnswer})
       : super(key: key);
 
@@ -119,12 +129,21 @@ class QuestionAndAnswers extends StatefulWidget {
 
   final int currentQuestion;
   final Function callback;
+  final Function moveToPrevious;
   final Function selectAnswer;
   @override
   _QuestionAndAnswersState createState() => _QuestionAndAnswersState();
 }
 
 class _QuestionAndAnswersState extends State<QuestionAndAnswers> {
+  bool checkisFirstQuestion() {
+    if (widget.currentQuestion != 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -167,7 +186,16 @@ class _QuestionAndAnswersState extends State<QuestionAndAnswers> {
               }),
         ),
         ElevatedButton(
-            onPressed: () => {widget.callback()}, child: Text("Next"))
+            onPressed: widget
+                    .questionsModel.questions[widget.currentQuestion].isAnswered
+                ? () => {widget.callback()}
+                : null,
+            child: Text("Next")),
+        checkisFirstQuestion()
+            ? ElevatedButton(
+                onPressed: () => {widget.moveToPrevious()},
+                child: Text("Previous"))
+            : Container(),
       ],
     );
   }

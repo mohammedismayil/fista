@@ -32,15 +32,18 @@ class Question {
     required this.questionText,
     required this.answers,
     required this.answeredQN,
+  
   });
 
   String questionText;
   int? answeredQN;
+  bool isAnswered = false;
   List<Answer> answers;
 
   factory Question.fromJson(Map<String, dynamic> json) => Question(
         questionText: json["questionText"],
         answeredQN: json["answeredQN"],
+        
         answers:
             List<Answer>.from(json["answers"].map((x) => Answer.fromJson(x))),
       );
@@ -48,6 +51,7 @@ class Question {
   Map<String, dynamic> toJson() => {
         "questionText": questionText,
         "answeredQN": answeredQN,
+        
         "answers": List<dynamic>.from(answers.map((x) => x.toJson())),
       };
 }
