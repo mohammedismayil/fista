@@ -5,6 +5,8 @@ import 'package:flutterdemo/Home/HomeTabbar.dart';
 import 'package:flutterdemo/Screens/QuizApp/QuizScreen.dart';
 import 'package:flutterdemo/WelcomeScreen/WelcomeScreen.dart';
 
+import 'Screens/WishListScreen/WishListScreen.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -30,7 +32,7 @@ class MyApp extends StatelessWidget {
       ),
       
       debugShowCheckedModeBanner: false,
-        home: Material(child: QuizScreen())
+        home: Material(child: WishListScreen())
     );
   }
 }
