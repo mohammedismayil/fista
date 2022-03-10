@@ -15,11 +15,16 @@ class _StoreDetailViewState extends State<StoreDetailView> {
         title: Text("Second Route"),
       ),
       body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            // Navigate back to first route when tapped.
-          },
-          child: Text('Go back!'),
+        child: Column(
+          children: [
+            Text('Product count '),
+            ElevatedButton(
+              onPressed: () {
+                // Navigate back to first route when tapped.
+              },
+              child: Text('Go back!'),
+            ),
+          ],
         ),
       ),
     );

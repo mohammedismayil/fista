@@ -2,13 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutterdemo/Home/Home.dart';
 import 'package:flutterdemo/Home/HomeScreen.dart';
 import 'package:flutterdemo/Home/HomeTabbar.dart';
+import 'package:flutterdemo/Screens/ProviderPattern/Screen1.dart';
+import 'package:flutterdemo/Screens/ProviderPattern/Screen2.dart';
 import 'package:flutterdemo/Screens/QuizApp/QuizScreen.dart';
 import 'package:flutterdemo/WelcomeScreen/WelcomeScreen.dart';
 
 import 'Screens/WishListScreen/WishListScreen.dart';
-
+import 'package:provider/provider.dart';
 void main() {
-  runApp(MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => Counter()),
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -32,7 +41,7 @@ class MyApp extends StatelessWidget {
       ),
       
       debugShowCheckedModeBanner: false,
-        home: Material(child: WishListScreen())
+        home: Material(child: Screen1())
     );
   }
 }

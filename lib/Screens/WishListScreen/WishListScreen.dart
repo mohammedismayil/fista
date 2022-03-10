@@ -8,6 +8,10 @@ class WishListScreen extends StatefulWidget {
 }
 
 class _WishListScreenState extends State<WishListScreen> {
+  deleteWishList(int index) {
+    print("deleting particular store from favourites $index");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,27 +79,47 @@ class _WishListScreenState extends State<WishListScreen> {
                                 ],
                               ),
                             ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              // crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      padding: EdgeInsets.all(10),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(25)),
-                                        color: Colors.orange[800],
+                            Container(
+                              // color: Colors.green,
+                              // margin: EdgeInsets.only(top: 30),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    // crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        // color: Colors.green,
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Container(
+                                              padding: EdgeInsets.all(10),
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(25)),
+                                                color: Colors.orange[800],
+                                              ),
+                                              child: Text("50-60mins"),
+                                            ),
+                                          ],
+                                        ),
                                       ),
-                                      child: Text("50-60mins"),
-                                    ),
-                                  ],
-                                ),
-                                Icon(Icons.delete)
-                              ],
+                                      new IconButton(
+                                        icon: new Icon(Icons.delete_outline),
+                                        onPressed: () {
+                                          deleteWishList(index);
+                                        },
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                           ])),
                 ),
