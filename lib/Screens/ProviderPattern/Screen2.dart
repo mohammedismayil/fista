@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutterdemo/Screens/ProviderPattern/Screen3.dart';
 import 'package:provider/provider.dart';
 
+import 'CounterProvider.dart';
 class Screen2 extends StatefulWidget {
   const Screen2({Key? key}) : super(key: key);
 
@@ -22,35 +24,18 @@ class _Screen2State extends State<Screen2> {
                 onPressed: () {
                   context.read<Counter>().increment();
                 },
-                child: Text("movetonext"))
+                child: Text("movetonext")),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Screen3()),
+                  );
+                },
+                child: Text("Move to 3rd screen"))
           ],
         ),
       )),
     );
-  }
-}
-
-class Counter with ChangeNotifier {
-  int _count = 0;
-
-  int get count => _count;
-
-  void increment() {
-    _count++;
-    notifyListeners();
-  }
-}
-
-class Count extends StatelessWidget {
-  const Count({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-
-        /// Calls `context.watch` to make [Count] rebuild when [Counter] changes.
-        '${context.watch<Counter>().count}',
-        key: const Key('counterState'),
-        style: Theme.of(context).textTheme.headline4);
   }
 }

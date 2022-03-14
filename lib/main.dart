@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutterdemo/Home/Home.dart';
 import 'package:flutterdemo/Home/HomeScreen.dart';
 import 'package:flutterdemo/Home/HomeTabbar.dart';
+import 'package:flutterdemo/Screens/ProviderPattern/CounterProvider.dart';
+import 'package:flutterdemo/Screens/ProviderPattern/LocationProvider.dart';
 import 'package:flutterdemo/Screens/ProviderPattern/Screen1.dart';
 import 'package:flutterdemo/Screens/ProviderPattern/Screen2.dart';
 import 'package:flutterdemo/Screens/QuizApp/QuizScreen.dart';
@@ -14,6 +16,7 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => Counter()),
+        ChangeNotifierProvider(create: (_) => LocationProvider()),
       ],
       child: MyApp(),
     ),

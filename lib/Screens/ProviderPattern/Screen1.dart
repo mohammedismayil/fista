@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutterdemo/Screens/ProviderPattern/LocationProvider.dart';
 import 'package:flutterdemo/Screens/ProviderPattern/Screen2.dart';
 import 'package:provider/provider.dart';
+
+import 'CounterProvider.dart';
 
 class Screen1 extends StatefulWidget {
   const Screen1({Key? key}) : super(key: key);
@@ -32,7 +35,8 @@ class _Screen1State extends State<Screen1> {
                     MaterialPageRoute(builder: (context) => Screen2()),
                   );
                 },
-                child: Text("movetonext"))
+                child: Text("movetonext")),
+            LocationText()
           ],
         ),
       ),
