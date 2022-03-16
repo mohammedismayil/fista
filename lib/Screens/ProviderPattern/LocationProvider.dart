@@ -16,10 +16,11 @@ class LocationText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("building location text widget from provider");
     return Text(
 
         /// Calls `context.watch` to make [Count] rebuild when [Counter] changes.
-        '${context.watch<LocationProvider>().location}',
+        'Current location is ${context.watch<LocationProvider>().location}',
         key: const Key('locationState'),
         style: Theme.of(context).textTheme.headline6);
   }

@@ -3,6 +3,7 @@ import 'package:flutterdemo/Screens/ProviderPattern/Screen3.dart';
 import 'package:provider/provider.dart';
 
 import 'CounterProvider.dart';
+import 'LocationProvider.dart';
 class Screen2 extends StatefulWidget {
   const Screen2({Key? key}) : super(key: key);
 
@@ -17,23 +18,29 @@ class _Screen2State extends State<Screen2> {
       appBar: AppBar(),
       body: SafeArea(
           child: Container(
-        child: Column(
-          children: [
-            Text("Counter count"),
-            ElevatedButton(
-                onPressed: () {
-                  context.read<Counter>().increment();
-                },
-                child: Text("movetonext")),
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Screen3()),
-                  );
-                },
-                child: Text("Move to 3rd screen"))
-          ],
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              LocationText(),
+              Text("Counter count"),
+              Count(),
+              ElevatedButton(
+                  onPressed: () {
+                    context.read<Counter>().increment();
+                  },
+                  child: Text("movetonext")),
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Screen3()),
+                    );
+                  },
+                  child: Text("Move to 3rd screen"))
+            ],
+          ),
         ),
       )),
     );

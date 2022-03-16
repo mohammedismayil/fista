@@ -21,7 +21,8 @@ class _Screen1State extends State<Screen1> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('You have pushed the button this many times:'),
+            LocationText(),
+            
             Count(),
             ElevatedButton(
                 onPressed: () {
@@ -36,7 +37,12 @@ class _Screen1State extends State<Screen1> {
                   );
                 },
                 child: Text("movetonext")),
-            LocationText()
+            TextField(
+              textAlign: TextAlign.center,
+              onSubmitted: (value) =>
+                  {context.read<LocationProvider>().setLocation(value)},
+              onChanged: (value) => {},
+            )
           ],
         ),
       ),
