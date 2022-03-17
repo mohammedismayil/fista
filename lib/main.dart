@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterdemo/Home/Home.dart';
 import 'package:flutterdemo/Home/HomeScreen.dart';
 import 'package:flutterdemo/Home/HomeTabbar.dart';
+import 'package:flutterdemo/Screens/APIInteractor/NotesScreen.dart';
 import 'package:flutterdemo/Screens/ProviderPattern/CounterProvider.dart';
 import 'package:flutterdemo/Screens/ProviderPattern/LocationProvider.dart';
 import 'package:flutterdemo/Screens/ProviderPattern/Screen1.dart';
@@ -44,7 +45,7 @@ class MyApp extends StatelessWidget {
       ),
       
       debugShowCheckedModeBanner: false,
-        home: Material(child: Screen1())
+        home: Material(child: NotesScreen())
     );
   }
 }
