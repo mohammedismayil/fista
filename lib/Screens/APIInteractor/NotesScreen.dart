@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/Home/HomeHeader.dart';
 import 'package:flutterdemo/Screens/APIInteractor/APIInteractor.dart';
+import 'package:flutterdemo/Screens/APIInteractor/UsersLocationModel.dart';
 
 class NotesScreen extends StatefulWidget {
   const NotesScreen({Key? key}) : super(key: key);
@@ -18,7 +19,15 @@ class _NotesScreenState extends State<NotesScreen> implements APIView {
   void initState() {
     // TODO: implement initState
     super.initState();
-    interactor.getData('https://jsonplaceholder.typicode.com/albums/1');
+    // interactor.getData('https://jsonplaceholder.typicode.com/albums/1',
+    //     {"one": "two"}, Album());
+
+    getUsersLocation();
+  }
+
+  getUsersLocation() {
+    interactor.getData("https://jsonplaceholder.typicode.com/users",
+        {"one": "two"}, UsersLocationModel());
   }
 
   @override

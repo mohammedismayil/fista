@@ -15,6 +15,7 @@ class HomeHeader extends StatefulWidget {
   @override
   _HomeHeaderState createState() => _HomeHeaderState();
 }
+
 //  borderRadius: BorderRadius.only(bottomLeft:Radius.circular(30),bottomRight:Radius.circular(30)),
 class _HomeHeaderState extends State<HomeHeader> {
   @override
@@ -151,17 +152,18 @@ class SearchBar extends StatelessWidget {
 }
 
 class Album {
-  final int userId;
-  final int id;
-  final String title;
+   int? userId;
+   int? id;
+   String? title;
 
   Album({
-    required this.userId,
-    required this.id,
-    required this.title,
+     this.userId,
+     this.id,
+     this.title,
   });
+  
 
-  factory Album.fromJson(Map<String, dynamic> json) {
+  fromJson(Map<String, dynamic> json) {
     return Album(
       userId: json['userId'],
       id: json['id'],

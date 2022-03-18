@@ -9,7 +9,7 @@ abstract class APIInteractor {
     required this.view,
   });
 
-  getData(String api) {}
+  getData(String api, Map parameters, dynamic model) {}
 }
 
 abstract class APIView {
@@ -57,7 +57,7 @@ class Interactor implements APIInteractor {
   }
 
   @override
-  getData(String api) async {
+  getData(String api, Map parameters, dynamic model) async {
     // TODO: implement getData
     print("coming to getdata");
     final response = await http.get(Uri.parse(api));
@@ -66,7 +66,7 @@ class Interactor implements APIInteractor {
       // If the server did return a 200 OK response,
       // then parse the JSON.
 
-      view.onSuccess(Album.fromJson(jsonDecode(response.body)));
+      view.onSuccess(model.fromJson((jsonDecode(response.body))));
     } else {
       // If the server did not return a 200 OK response,
       // then throw an exception.
