@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutterdemo/Home/HomeHeader.dart';
 import 'package:flutterdemo/Screens/APIInteractor/APIInteractor.dart';
 import 'package:flutterdemo/Screens/APIInteractor/UsersLocationModel.dart';
+import 'package:flutterdemo/Utils/Utility.dart';
+
 
 class NotesScreen extends StatefulWidget {
   const NotesScreen({Key? key}) : super(key: key);
@@ -44,9 +46,11 @@ class _NotesScreenState extends State<NotesScreen> implements APIView {
     // TODO: implement onSuccess
 
     print(response);
-    // final model = response as Album;
+    // final List model = response;
 
-    // print(model.title);
+    // final decoded = model.map((item) => UsersLocationModel().fromJson(item));
+
+    // print(decoded);
     // throw UnimplementedError();
   }
 
@@ -58,7 +62,17 @@ class _NotesScreenState extends State<NotesScreen> implements APIView {
           child: Center(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: [Text("User list")],
+              children: [
+                Text("User list"),
+                ElevatedButton(
+                    onPressed: () {
+                      print("show alert");
+
+                      CustomDialog().showMyDialog(context);
+                    },
+                    child: Text("Show alert")),
+                CustomTextBig()
+              ],
             ),
           ),
         ),
