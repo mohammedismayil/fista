@@ -3,6 +3,8 @@ import 'package:flutterdemo/Home/Home.dart';
 import 'package:flutterdemo/Home/HomeScreen.dart';
 import 'package:flutterdemo/Home/HomeTabbar.dart';
 import 'package:flutterdemo/Screens/APIInteractor/NotesScreen.dart';
+import 'package:flutterdemo/Screens/MVVM/MediaScreen.dart';
+import 'package:flutterdemo/Screens/MVVM/MediaVM.dart';
 import 'package:flutterdemo/Screens/ProviderPattern/CounterProvider.dart';
 import 'package:flutterdemo/Screens/ProviderPattern/LocationProvider.dart';
 import 'package:flutterdemo/Screens/ProviderPattern/Screen1.dart';
@@ -16,6 +18,7 @@ void main() {
   runApp(
     MultiProvider(
       providers: [
+        ChangeNotifierProvider.value(value: MediaViewModel()),
         ChangeNotifierProvider(create: (_) => Counter()),
         ChangeNotifierProvider(create: (_) => LocationProvider()),
       ],
@@ -45,7 +48,7 @@ class MyApp extends StatelessWidget {
       ),
       
       debugShowCheckedModeBanner: false,
-        home: Material(child: NotesScreen())
+        home: Material(child: MediaScreen())
     );
   }
 }
