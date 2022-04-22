@@ -3,6 +3,7 @@ import 'package:flutterdemo/Home/Home.dart';
 import 'package:flutterdemo/Home/HomeScreen.dart';
 import 'package:flutterdemo/Home/HomeTabbar.dart';
 import 'package:flutterdemo/Screens/APIInteractor/NotesScreen.dart';
+import 'package:flutterdemo/Screens/DateComparison/DateCompareScreen.dart';
 import 'package:flutterdemo/Screens/MVVM/MediaScreen.dart';
 import 'package:flutterdemo/Screens/MVVM/MediaVM.dart';
 import 'package:flutterdemo/Screens/ProviderPattern/CounterProvider.dart';
@@ -48,7 +49,7 @@ class MyApp extends StatelessWidget {
       ),
       
       debugShowCheckedModeBanner: false,
-        home: Material(child: MediaScreen())
+        home: Material(child: DateComparisonScreen())
     );
   }
 }
