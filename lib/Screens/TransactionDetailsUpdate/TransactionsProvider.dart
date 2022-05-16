@@ -7,7 +7,8 @@ class TransactionProvider with ChangeNotifier {
 
   String txID = "";
 
-  double balance = 0;
+  double _balance = HiveHandler().getBalanceofCoin();
+  double get balance => _balance;
 
   int get count => _count;
 
@@ -21,6 +22,12 @@ class TransactionProvider with ChangeNotifier {
   }
 
   double getBalance() {
-    return HiveHandler().getBalance();
+    // balance = HiveHandler().getBalanceofCoin();
+    return balance;
+  }
+
+  changeBalance(double givenBalance) {
+    _balance = givenBalance;
+    notifyListeners();
   }
 }

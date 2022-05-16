@@ -17,11 +17,17 @@ import 'package:flutterdemo/Screens/TransactionDetailsUpdate/HomeScreen.dart';
 import 'package:flutterdemo/Screens/TransactionDetailsUpdate/TransactionsProvider.dart';
 import 'package:flutterdemo/WelcomeScreen/WelcomeScreen.dart';
 import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 import 'Screens/WishListScreen/WishListScreen.dart';
 import 'package:provider/provider.dart';
+import 'package:path_provider/path_provider.dart';
+void main() async {
+   WidgetsFlutterBinding.ensureInitialized();
+    Directory directory = await getApplicationDocumentsDirectory();
+    Hive.init(directory.path);
 
-void main() {
+    await Hive.openBox('balance');
   runApp(
     MultiProvider(
       providers: [
@@ -70,10 +76,14 @@ class _MyAppState extends State<MyApp> {
   }
 
   openBox() async {
-    var path = Directory.current.path;
-    Hive.init(path);
+   
+    WidgetsFlutterBinding.ensureInitialized();
+    Directory directory = await getApplicationDocumentsDirectory();
+    Hive.init(directory.path);
 
-    // await Hive.openBox('balance');
+    await Hive.openBox('balance');
+    // final box = Hive.box('balance');
+    // box.put('eth', '5.9');  
   }
 }
 
