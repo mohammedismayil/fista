@@ -26,8 +26,9 @@ class TransactionProvider with ChangeNotifier {
     return balance;
   }
 
-  changeBalance(double givenBalance) {
-    _balance = givenBalance;
+  changeBalance() {
+    _balance = _balance + 1.0;
+    HiveHandler().setBalanceOfCoin(_balance.toString());
     notifyListeners();
   }
 }

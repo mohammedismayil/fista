@@ -33,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             ElevatedButton(
                 onPressed: () {
-                  changeBalance();
+                  context.read<TransactionProvider>().changeBalance();
                 },
                 child: Text("Time1")),
             // Row(

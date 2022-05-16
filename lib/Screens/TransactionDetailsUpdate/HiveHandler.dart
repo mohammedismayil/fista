@@ -13,11 +13,10 @@ class HiveHandler {
     return balance;
   }
 
-  setBalanceOfCoin(String balance) {
-    double bal = double.parse(Hive.box('balance').get("eth").toString()) + 1.0;
-    Hive.box('balance').put("eth", bal.toString());
+  setBalanceOfCoin(String balance) async {
+   
+    Hive.box('balance').put("eth", balance.toString());
     print("transaction list needs to be updated now");
-    TransactionProvider provider = TransactionProvider();
-    provider.changeBalance(bal);
+    
   }
 }
