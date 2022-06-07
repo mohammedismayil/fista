@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class LocationProvider with ChangeNotifier {
-  String _location = "";
+  String _location = "India";
 
   String get location => _location;
   void setLocation(String givenlocation) {

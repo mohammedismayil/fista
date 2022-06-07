@@ -9,13 +9,13 @@ abstract class APIInteractor {
     required this.view,
   });
 
-  getData(String api, Map parameters, dynamic model) {}
+  getData<T>(String api, Map parameters, T model) {}
 }
 
 abstract class APIView {
   late APIInteractor interactor;
 
-  onSuccess(dynamic response);
+  onSuccess<T>(T response);
   onFailure();
 }
 
@@ -31,7 +31,7 @@ class View extends APIView {
 
   View();
   @override
-  onSuccess(dynamic response) {
+  onSuccess<T>(response) {
     // TODO: implement onSuccess
     throw UnimplementedError();
   }
@@ -57,7 +57,7 @@ class Interactor implements APIInteractor {
   }
 
   @override
-  getData(String api, Map parameters, dynamic model) async {
+  getData<T>(String api, Map parameters, T model) async {
     // TODO: implement getData
     print("coming to getdata");
     final response = await http.get(Uri.parse(api));
