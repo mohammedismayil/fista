@@ -4,7 +4,6 @@ import 'package:flutterdemo/Screens/APIInteractor/APIInteractor.dart';
 import 'package:flutterdemo/Screens/APIInteractor/UsersLocationModel.dart';
 import 'package:flutterdemo/Utils/Utility.dart';
 
-
 class NotesScreen extends StatefulWidget {
   const NotesScreen({Key? key}) : super(key: key);
 
@@ -28,8 +27,10 @@ class _NotesScreenState extends State<NotesScreen> implements APIView {
   }
 
   getUsersLocation() {
-    interactor.getData("https://jsonplaceholder.typicode.com/users",
-        {"one": "two"}, UsersLocationModel());
+    interactor.getData(
+        "https://run.mocky.io/v3/ae819d6b-298d-41ed-9b2b-8585a8a5c04c",
+        {"one": "two"},
+        UsersLocationModel);
   }
 
   @override
@@ -41,13 +42,16 @@ class _NotesScreenState extends State<NotesScreen> implements APIView {
     throw UnimplementedError();
   }
 
+  T? cast<T>(x) => x is T ? x : null;
   @override
   onSuccess(dynamic response) {
     // TODO: implement onSuccess
 
     print(response);
     // final List model = response;
+    UsersLocationModel? model = UsersLocationModel.fromJson(response);
 
+    print(model.users);
     // final decoded = model.map((item) => UsersLocationModel().fromJson(item));
 
     // print(decoded);

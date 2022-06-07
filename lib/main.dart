@@ -65,7 +65,7 @@ class _MyAppState extends State<MyApp> {
           primarySwatch: Colors.blue,
         ),
         debugShowCheckedModeBanner: false,
-        home: Material(child: HomeScreen()));
+        home: Material(child: NotesScreen()));
   }
 
   @override

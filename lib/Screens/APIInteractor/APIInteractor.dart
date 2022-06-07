@@ -68,10 +68,10 @@ class Interactor implements APIInteractor {
 
       // view.onSuccess(model.fromJson((jsonDecode(response.body))));
 //
-      dynamic t = json.decode(response.body);
+      // dynamic t = json.decode(response.body);
 
-      model = t;
-      view.onSuccess(model);
+      // model = json.decode(response.body);
+      view.onSuccess(json.decode(response.body));
     } else {
       // If the server did not return a 200 OK response,
       // then throw an exception.
