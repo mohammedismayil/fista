@@ -19,6 +19,7 @@ import 'package:flutterdemo/WelcomeScreen/WelcomeScreen.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
+import 'Screens/TodoListScreen.dart';
 import 'Screens/WishListScreen/WishListScreen.dart';
 import 'package:provider/provider.dart';
 import 'package:path_provider/path_provider.dart';
@@ -28,6 +29,7 @@ void main() async {
     Hive.init(directory.path);
 
     await Hive.openBox('balance');
+  await Hive.openBox('booklist');
   runApp(
     MultiProvider(
       providers: [
@@ -65,7 +67,7 @@ class _MyAppState extends State<MyApp> {
           primarySwatch: Colors.blue,
         ),
         debugShowCheckedModeBanner: false,
-        home: Material(child: NotesScreen()));
+        home: Material(child: TodoListScreen()));
   }
 
   @override
