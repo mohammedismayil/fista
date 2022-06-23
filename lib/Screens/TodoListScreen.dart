@@ -25,9 +25,9 @@ class _TodoListScreenState extends State<TodoListScreen> {
   }
 
   addBookInHive() {
-    setState(() {
+    // setState(() {
       Hive.box("booklist").add("Davincicode");
-    });
+    // });
   }
 
   addToLocalArray() {
@@ -69,6 +69,7 @@ class _TodoListScreenState extends State<TodoListScreen> {
             ValueListenableBuilder(
               valueListenable: Hive.box("booklist").listenable(),
               builder: (context, value, child) {
+                print("Value listenable builder building now");
                 return SingleChildScrollView(
                   child: ListView.builder(
                     scrollDirection: Axis.vertical,
