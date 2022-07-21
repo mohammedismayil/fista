@@ -9,6 +9,7 @@ import 'package:flutterdemo/Screens/AddCustomToken.dart';
 import 'package:flutterdemo/Screens/DateComparison/DateCompareScreen.dart';
 import 'package:flutterdemo/Screens/MVVM/MediaScreen.dart';
 import 'package:flutterdemo/Screens/MVVM/MediaVM.dart';
+import 'package:flutterdemo/Screens/MnemonicVerify.dart';
 import 'package:flutterdemo/Screens/ProviderPattern/CounterProvider.dart';
 import 'package:flutterdemo/Screens/ProviderPattern/LocationProvider.dart';
 import 'package:flutterdemo/Screens/ProviderPattern/Screen1.dart';
@@ -16,6 +17,7 @@ import 'package:flutterdemo/Screens/ProviderPattern/Screen2.dart';
 import 'package:flutterdemo/Screens/QuizApp/QuizScreen.dart';
 import 'package:flutterdemo/Screens/TransactionDetailsUpdate/HomeScreen.dart';
 import 'package:flutterdemo/Screens/TransactionDetailsUpdate/TransactionsProvider.dart';
+import 'package:flutterdemo/Screens/WalletConnectScreen.dart';
 import 'package:flutterdemo/WelcomeScreen/WelcomeScreen.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -68,7 +70,7 @@ class _MyAppState extends State<MyApp> {
           primarySwatch: Colors.blue,
         ),
         debugShowCheckedModeBanner: false,
-        home: Material(child: AddCustomTokenScreen()));
+        home: Material(child: MnemonicVerifyScreen()));
   }
 
   @override

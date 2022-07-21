@@ -34,6 +34,12 @@ dependencies:
   hive_flutter: ^1.1.0
   path_provider: ^2.0.10
   web3dart: ^2.3.5
+  wallet_connect: ^1.0.2
+  eth_sig_util: ^0.0.9
+  flutter_inappwebview: ^5.4.3+7
+  shared_preferences: ^2.0.15
+  scan: ^1.6.0
+ 
   
 
 dev_dependencies:
