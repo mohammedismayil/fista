@@ -28,19 +28,19 @@ class _MnemonicVerifyScreenState extends State<MnemonicVerifyScreen> {
     "insane",
     "stick"
   ];
-  List correctOrderList = [
-    "siren",
-    "place",
-    "smooth",
-    "net",
+  List shuffledList = [
     "stand",
-    "brush",
-    "bench",
-    "unfair",
     "potato",
+    "brush",
+    "unfair",
+    "smooth",
+    "stick",
+    "net",
+    "siren",
     "roof",
-    "insane",
-    "stick"
+    "place",
+    "bench",
+    "insane"
   ];
 
   List givenOrderList = [];
@@ -64,7 +64,7 @@ class _MnemonicVerifyScreenState extends State<MnemonicVerifyScreen> {
           child: InkWell(
             onTap: () => {
               givenOrderList.remove(actor),
-              correctOrderList.add(actor),
+              shuffledList.add(actor),
               checkCorrectOrder(),
             },
             child: Transform(
@@ -83,13 +83,13 @@ class _MnemonicVerifyScreenState extends State<MnemonicVerifyScreen> {
     });
   }
 
-  Iterable<Widget> get correctOrderChips {
-    return correctOrderList.map((actor) {
+  Iterable<Widget> get getshuffledList {
+    return shuffledList.map((actor) {
       return Padding(
           padding: const EdgeInsets.all(4.0),
           child: InkWell(
             onTap: () => {
-              correctOrderList.remove(actor),
+              shuffledList.remove(actor),
               givenOrderList.add(actor),
               checkCorrectOrder(),
             },
@@ -138,7 +138,7 @@ class _MnemonicVerifyScreenState extends State<MnemonicVerifyScreen> {
               Align(
                 alignment: Alignment.topLeft,
                 child: Wrap(
-                  children: correctOrderChips.toList(),
+                  children: getshuffledList.toList(),
                 ),
               ),
             ],
