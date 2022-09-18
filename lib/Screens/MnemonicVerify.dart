@@ -29,18 +29,19 @@ class _MnemonicVerifyScreenState extends State<MnemonicVerifyScreen> {
     "stick"
   ];
   List shuffledList = [
-    "stand",
-    "potato",
-    "brush",
-    "unfair",
-    "smooth",
-    "stick",
-    "net",
-    "siren",
-    "roof",
-    "place",
-    "bench",
-    "insane"
+    {"value": "stand", "id": 1},
+    {"value": "potato", "id": 2},
+    {"value": "brush", "id": 3},
+    {"value": "unfair", "id": 4},
+    {"value": "smooth", "id": 5},
+    {"value": "stick", "id": 6},
+    {"value": "net", "id": 7},
+    {"value": "siren", "id": 8},
+    {"value": "roof", "id": 9},
+    {"value": "place", "id": 10},
+    {"value": "bench", "id": 11},
+    {"value": "insane", "id": 12},
+
   ];
 
   List givenOrderList = [];
@@ -65,6 +66,11 @@ class _MnemonicVerifyScreenState extends State<MnemonicVerifyScreen> {
             onTap: () => {
               givenOrderList.remove(actor),
               shuffledList.add(actor),
+              
+              shuffledList.sort((a, b){ 
+    return a["id"].compareTo(b["id"]);
+    //softing on numerical order (Ascending order by Roll No integer)
+}),
               checkCorrectOrder(),
             },
             child: Transform(
@@ -74,7 +80,7 @@ class _MnemonicVerifyScreenState extends State<MnemonicVerifyScreen> {
                     borderRadius: BorderRadius.circular(5),
                     side: BorderSide(color: Colors.black)),
                 label: Text(
-                  actor,
+                  actor["value"],
                   style: TextStyle(fontSize: 14),
                 ),
               ),
@@ -91,6 +97,10 @@ class _MnemonicVerifyScreenState extends State<MnemonicVerifyScreen> {
             onTap: () => {
               shuffledList.remove(actor),
               givenOrderList.add(actor),
+                shuffledList.sort((a, b){ 
+    return a["id"].compareTo(b["id"]);
+    //softing on numerical order (Ascending order by Roll No integer)
+}),
               checkCorrectOrder(),
             },
             child: Transform(
@@ -100,7 +110,7 @@ class _MnemonicVerifyScreenState extends State<MnemonicVerifyScreen> {
                     borderRadius: BorderRadius.circular(5),
                     side: BorderSide(color: Colors.black)),
                 label: Text(
-                  actor,
+                  actor["value"],
                   style: TextStyle(fontSize: 14),
                 ),
               ),
