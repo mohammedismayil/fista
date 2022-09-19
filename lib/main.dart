@@ -6,6 +6,7 @@ import 'package:flutterdemo/Home/HomeScreen.dart';
 import 'package:flutterdemo/Home/HomeTabbar.dart';
 import 'package:flutterdemo/Screens/APIInteractor/NotesScreen.dart';
 import 'package:flutterdemo/Screens/AddCustomToken.dart';
+import 'package:flutterdemo/Screens/CallBackExWidget.dart';
 import 'package:flutterdemo/Screens/DateComparison/DateCompareScreen.dart';
 import 'package:flutterdemo/Screens/MVVM/MediaScreen.dart';
 import 'package:flutterdemo/Screens/MVVM/MediaVM.dart';
@@ -70,7 +71,7 @@ class _MyAppState extends State<MyApp> {
           primarySwatch: Colors.blue,
         ),
         debugShowCheckedModeBanner: false,
-        home: Material(child: MnemonicVerifyScreen()));
+        home: Material(child: CallBackExWidget()));
   }
 
   @override
