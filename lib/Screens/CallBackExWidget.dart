@@ -21,7 +21,11 @@ class _CallBackExWidgetState extends State<CallBackExWidget> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  TelephoneCallBackWidget(),
+                  TelephoneCallBackWidget(
+                    informThem: (p0) {
+                      print("from telephone ${p0}");
+                    },
+                  ),
                 ],
               )
             ]),
