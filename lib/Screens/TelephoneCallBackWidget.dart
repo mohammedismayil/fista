@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
+
+typedef SimpleCallBack = Function(int);
 class TelephoneCallBackWidget extends StatefulWidget {
   TelephoneCallBackWidget({Key? key, this.informThem}) : super(key: key);
 
-  Function(int)? informThem;
+  SimpleCallBack? informThem;
   @override
   State<TelephoneCallBackWidget> createState() =>
       _TelephoneCallBackWidgetState();
