@@ -10,12 +10,14 @@ import 'package:flutterdemo/Screens/CallBackExWidget.dart';
 import 'package:flutterdemo/Screens/DateComparison/DateCompareScreen.dart';
 import 'package:flutterdemo/Screens/MVVM/MediaScreen.dart';
 import 'package:flutterdemo/Screens/MVVM/MediaVM.dart';
+import 'package:flutterdemo/Screens/MVVM/StoreDetailVM.dart';
 import 'package:flutterdemo/Screens/MnemonicVerify.dart';
 import 'package:flutterdemo/Screens/ProviderPattern/CounterProvider.dart';
 import 'package:flutterdemo/Screens/ProviderPattern/LocationProvider.dart';
 import 'package:flutterdemo/Screens/ProviderPattern/Screen1.dart';
 import 'package:flutterdemo/Screens/ProviderPattern/Screen2.dart';
 import 'package:flutterdemo/Screens/QuizApp/QuizScreen.dart';
+import 'package:flutterdemo/Screens/StoreDetailsWithVM.dart';
 import 'package:flutterdemo/Screens/TransactionDetailsUpdate/HomeScreen.dart';
 import 'package:flutterdemo/Screens/TransactionDetailsUpdate/TransactionsProvider.dart';
 import 'package:flutterdemo/Screens/WalletConnectScreen.dart';
@@ -38,6 +40,7 @@ void main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider.value(value: MediaViewModel()),
+        ChangeNotifierProvider.value(value: StoreDetailViewModel()),
         ChangeNotifierProvider(create: (_) => Counter()),
         ChangeNotifierProvider(create: (_) => TransactionProvider()),
         ChangeNotifierProvider(create: (_) => LocationProvider()),
@@ -71,7 +74,7 @@ class _MyAppState extends State<MyApp> {
           primarySwatch: Colors.blue,
         ),
         debugShowCheckedModeBanner: false,
-        home: Material(child: CallBackExWidget()));
+        home: Material(child: StoreDetailsWithVM()));
   }
 
   @override
