@@ -11,6 +11,7 @@ class StoreDetailsWithVM extends StatefulWidget {
 }
 
 class _StoreDetailsWithVMState extends State<StoreDetailsWithVM> {
+  int count = 0;
   @override
   Widget build(BuildContext context) {
     RestaurantDetails? details =
@@ -22,6 +23,25 @@ class _StoreDetailsWithVMState extends State<StoreDetailsWithVM> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text("CallBack Example"),
+
+              Text("Count $count"),
+              TextButton(
+                  onPressed: () {
+                    count += 1;
+                    print(count);
+                  },
+                  child: Text("Button 1")),
+
+               TextButton(
+                  onPressed: () {
+                  
+setState(() {
+  
+});
+
+                
+                  },
+                  child: Text("Button 2")),
               Text(details?.name ?? ""),
             ]),
       ),
