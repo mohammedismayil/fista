@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/Screens/APIInteractor/AlbumModel.dart';
 import 'package:http/http.dart' as http;
-
+import 'package:app_links/app_links.dart';
 typedef SimpleCallBack = Function(int);
 
 abstract class DisablingButton {
@@ -25,11 +25,40 @@ class TelephoneCallBackWidget extends StatefulWidget
 
 class _TelephoneCallBackWidgetState extends State<TelephoneCallBackWidget> {
   int _count = 0;
-
+final _navigatorKey = GlobalKey<NavigatorState>();
+  late AppLinks _appLinks;
+  StreamSubscription<Uri>? _linkSubscription;
   void indicateDisabled() {
     print("Nope i am disabled");
   }
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    initDeepLinks();
+  }
+
+  void openAppLink(Uri uri) {
+    _navigatorKey.currentState?.pushNamed(uri.fragment);
+  }
+
+  Future<void> initDeepLinks() async {
+    _appLinks = AppLinks();
+
+    // Check initial link if app was in cold state (terminated)
+    // final appLink = await _appLinks.getInitialAppLink();
+    // if (appLink != null) {
+    //   print('getInitialAppLink: $appLink');
+    //   openAppLink(appLink);
+    // }
+
+    // Handle link when app is in warm state (front or background)
+    _linkSubscription = _appLinks.uriLinkStream.listen((uri) {
+      print('onAppLink: $uri');
+      openAppLink(uri);
+    });
+  }
   void incrementCount() async {
     setState(() {
       widget.isDisabled = true;
@@ -52,14 +81,17 @@ class _TelephoneCallBackWidgetState extends State<TelephoneCallBackWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          Text("Telephone widget"),
-          TextButton(
-              onPressed: widget.isDisabled ? indicateDisabled : incrementCount,
-              child: Text("Call"))
-        ],
+    return SafeArea(
+      child: Container(
+        child: Column(
+          children: [
+            Text("Telephone widgettt"),
+            TextButton(
+                onPressed:
+                    widget.isDisabled ? indicateDisabled : incrementCount,
+                child: Text("Call"))
+          ],
+        ),
       ),
     );
   }
