@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterdemo/Screens/APIInteractor/AlbumModel.dart';
 import 'package:http/http.dart' as http;
 import 'package:app_links/app_links.dart';
+import 'package:flutter/services.dart';
 typedef SimpleCallBack = Function(int);
 
 abstract class DisablingButton {
@@ -28,6 +29,7 @@ class _TelephoneCallBackWidgetState extends State<TelephoneCallBackWidget> {
 final _navigatorKey = GlobalKey<NavigatorState>();
   late AppLinks _appLinks;
   StreamSubscription<Uri>? _linkSubscription;
+  static const platform = MethodChannel('samples.flutter.dev/battery');
   void indicateDisabled() {
     print("Nope i am disabled");
   }
@@ -78,7 +80,21 @@ final _navigatorKey = GlobalKey<NavigatorState>();
       throw Exception('Failed to load album');
     }
   }
+String _batteryLevel = 'Unknown battery level.';
 
+  Future<void> _getBatteryLevel() async {
+    String batteryLevel;
+    try {
+      final int result = await platform.invokeMethod('getBatteryLevel');
+      batteryLevel = 'Battery level at $result % .';
+    } on PlatformException catch (e) {
+      batteryLevel = "Failed to get battery level: '${e.message}'.";
+    }
+
+    setState(() {
+      _batteryLevel = batteryLevel;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -89,7 +105,12 @@ final _navigatorKey = GlobalKey<NavigatorState>();
             TextButton(
                 onPressed:
                     widget.isDisabled ? indicateDisabled : incrementCount,
-                child: Text("Call"))
+                child: Text("Call")),
+            ElevatedButton(
+              onPressed: _getBatteryLevel,
+              child: const Text('Get Battery Level'),
+            ),
+            Text(_batteryLevel),
           ],
         ),
       ),
